@@ -1,6 +1,5 @@
-# Sparta-Week-4-Project
+# MySQL Employees Projects Week 4 - SOLID/OOP
 
-## MySQL Employees Projects Week 3 - SOLID/OOP
 ### General Requirements
 All projects:
 
