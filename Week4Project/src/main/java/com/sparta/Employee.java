@@ -1,6 +1,7 @@
 package com.sparta;
 
 public class Employee {
+
     private int emp_no;
     private String birth_date;
     private String first_name;
@@ -8,7 +9,6 @@ public class Employee {
     private char gender;
     private String hire_date;
 
-    //employee constructor to create an employee to place in List<>
     public Employee(int emp_no, String birth_date, String first_name, String last_name, char gender, String hire_date)
     {
         this.emp_no = emp_no;
@@ -69,6 +69,7 @@ public class Employee {
     public void setHire_date(String hire_date) {
         this.hire_date = hire_date;
     }
+
 
 
 }
