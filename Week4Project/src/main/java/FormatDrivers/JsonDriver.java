@@ -2,6 +2,7 @@ package FormatDrivers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.entities.Employee;
 
 public class JsonDriver {
     public String ObjToJson(Employee employee) throws JsonProcessingException {
