@@ -10,7 +10,7 @@ public class Marketing extends Employee implements Department {
 
 
     public Marketing(int emp_no, String birth_date, String first_name, String last_name, String gender, String hire_date) {
-        super(emp_no, birth_date, first_name, last_name, gender, hire_date);
+        super(emp_no, birth_date, first_name, last_name, gender, hire_date, "Marketing");
     }
 
     @Override

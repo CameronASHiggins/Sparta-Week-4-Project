@@ -43,7 +43,15 @@ public class EmployeeDAO implements DAO<Employee> {
         }
         if(findByIdPS == null){
             try {
-                findByIdPS = connection.prepareStatement("SELECT * FROM employees WHERE emp_no = ?");
+                findByIdPS = connection.prepareStatement("SELECT * FROM ((\n" +
+                        "employees.employees \n" +
+                        "INNER JOIN \n" +
+                        " employees.dept_emp\n" +
+                        "ON dept_emp.emp_no = employees.emp_no)\n" +
+                        "INNER JOIN \n" +
+                        "employees.departments\n" +
+                        "ON dept_emp.dept_no = departments.dept_no)\n" +
+                        "WHERE employees.emp_no = ?");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
@@ -111,7 +119,8 @@ public class EmployeeDAO implements DAO<Employee> {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(6),
+                        rs.getString(12));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -167,7 +176,9 @@ public class EmployeeDAO implements DAO<Employee> {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("gender"),
-                    rs.getString("hire_date")));
+                    rs.getString("hire_date"),
+                    rs.getString("department")
+                    ));
         }
         return list;
     }

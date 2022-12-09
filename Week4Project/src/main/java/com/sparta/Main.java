@@ -16,7 +16,7 @@ public class Main {
 
 //        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
 
-        findEmployeeById(employeeDAO, 0);
+        findEmployeeById(employeeDAO, 10001);
 
 //        displayAllEmployees();
 
