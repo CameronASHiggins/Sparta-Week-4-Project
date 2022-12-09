@@ -14,7 +14,7 @@ public class JsonDriver {
     }
 }
 //TODO: get employee converter class
-// generate object to json
-// create object mapper
-// repeat for object to xml
-// consider json to objct and xml to object
+// generate object to json - done
+// create object mapper - done
+// repeat for object to xml - done
+// consider json to objct and xml to object - done

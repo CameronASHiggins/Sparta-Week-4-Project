@@ -1,7 +1,11 @@
 package com.sparta;
 
+import com.sparta.departmentgroup.*;
+
+import java.time.LocalDate;
+
 public class EmployeeFactory {
-    public Employee createEmployee(String channel, int emp_no, String birth_date, String first_name, String last_name, char gender, String hire_date)
+    public Employee createEmployee(String channel, int emp_no, LocalDate birth_date, String first_name, String last_name, char gender, LocalDate hire_date)
     {
         switch(channel)
         {
