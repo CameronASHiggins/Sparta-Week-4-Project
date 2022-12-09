@@ -1,11 +1,10 @@
-package FormatDrivers;
+package com.sparta.utilities;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.sparta.Employee;
+import com.sparta.model.entities.Employee;
 
-public class XMLDriver {
+public class XMLFormat {
     public String ObjToXML(Employee employee) throws JsonProcessingException {
         XmlMapper mapper = new XmlMapper();
         return mapper.writeValueAsString(employee);
