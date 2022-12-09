@@ -98,6 +98,7 @@ public class EmployeeDAO implements DAO<Employee> {
         return result;
     }
 
+
     @Override
     public Employee findByID(int id) throws SQLException {
         Employee result = null;
@@ -172,6 +173,24 @@ public class EmployeeDAO implements DAO<Employee> {
         return list;
     }
 
+    public List<Employee> getEmployeeByStartAndEnd(String dept, String start, String end) throws SQLException{
+        List<Employee> list = new ArrayList<>();
+        ResultSet rs = (connection.createStatement()).executeQuery
+                (   "SELECT employees.emp_no, departments.dept_name, employees.birth_date, employees.first_name, employees.last_name, employees.gender, employees.hire_date, dept_emp.from_date, dept_emp.to_date " +
+                        "FROM employees " +
+                        "JOIN dept_emp ON employees.emp_no = dept_emp.emp_no " +
+                        "JOIN departments ON dept_emp.dept_no = departments.dept_no " +
+                        "WHERE dept_emp.from_date > '" + start + "' AND dept_emp.to_date < '" + end + "' AND departments.dept_name = '" + dept + "'");
+        while(rs.next()){
+            list.add(new Employee(rs.getInt("emp_no"),
+                    rs.getString("birth_date"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getString("gender"),
+                    rs.getString("hire_date")));
+        }
+        return list;
+    }
     @Override
     public void close(){
         if (connection != null){
