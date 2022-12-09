@@ -16,9 +16,11 @@ public class Main {
 
 //        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
 
-        findEmployeeById(employeeDAO, 0);
+//        findEmployeeById(employeeDAO, 10084);
 
-//        displayAllEmployees();
+       displayAllEmployees();
+
+//        EmployeeDAO.findByDeptID(10084);
 
 //        updateEmployeeMain(employeeDAO,499998,"2000-07-26","Cameron","Higgins","M","2022-11-14");
 

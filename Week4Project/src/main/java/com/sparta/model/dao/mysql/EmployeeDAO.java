@@ -18,6 +18,7 @@ public class EmployeeDAO implements DAO<Employee> {
     private static EmployeeDAO instance = null;
 
     private static PreparedStatement findByIdPS = null;
+    private static PreparedStatement findDepartmentByIdPS = null;
     private static PreparedStatement deleteByIdPS = null;
     private static PreparedStatement insertEmployeePS = null;
     private static PreparedStatement updateEmployeePS = null;
@@ -45,6 +46,13 @@ public class EmployeeDAO implements DAO<Employee> {
             try {
                 findByIdPS = connection.prepareStatement("SELECT * FROM employees WHERE emp_no = ?");
             }catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+        }
+        if(findDepartmentByIdPS == null) {
+            try {
+                findDepartmentByIdPS = connection.prepareStatement("SELECT dept_no FROM dept_emp WHERE emp_no = ?");
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -105,13 +113,30 @@ public class EmployeeDAO implements DAO<Employee> {
         try {
             findByIdPS.setInt(1,id);
             ResultSet rs = findByIdPS.executeQuery();
+
             while(rs.next()) {
                 result = new Employee(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(6),
+                        findByDeptID(rs.getInt(1)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    public static String findByDeptID(int id) throws SQLException {
+        String result = null;
+
+        try {
+            findDepartmentByIdPS.setInt(1,id);
+            ResultSet rs = findDepartmentByIdPS.executeQuery();
+            while(rs.next()) {
+                result = (rs.getString(1));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -161,13 +186,15 @@ public class EmployeeDAO implements DAO<Employee> {
         List<Employee> list = new ArrayList<>();
         ResultSet rs = (connection.createStatement()).executeQuery
                 ("SELECT * FROM employees");
+
         while(rs.next()){
             list.add(new Employee(rs.getInt("emp_no"),
                     rs.getString("birth_date"),
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("gender"),
-                    rs.getString("hire_date")));
+                    rs.getString("hire_date"),
+                    findByDeptID(rs.getInt("emp_no"))));
         }
         return list;
     }
