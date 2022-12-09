@@ -1,6 +1,6 @@
 package FormattingTest;
 
-import com.sparta.CSVFileHandler;
+import com.sparta.utilities.CSVFileHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
