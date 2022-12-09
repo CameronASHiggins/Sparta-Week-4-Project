@@ -6,7 +6,14 @@ import java.util.Arrays;
 
 public class CSVFileHandler {
 
-        protected static String[] getFields(String line){
+
+
+    private String fileName;
+    public CSVFileHandler() {
+    }
+
+
+    public static String[] getFields(String line){
             //                    split the csv line into fields
 
             String[] fields = line.split(",");
@@ -19,13 +26,13 @@ public class CSVFileHandler {
 
             return fields;
         }
-        public static String readCSV(String filename){
+        public String readCSV() throws IOException{
 //            if using arraylist
             ArrayList<String> output = new ArrayList<>();
 //            if using string
             String out = "";
             try(
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(getFileName()))
             ){
                 String line;
 
@@ -43,16 +50,18 @@ public class CSVFileHandler {
 //                    split the csv line into fields - uncomment below
 //                    getFields(out);
 
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                throw new RuntimeException(e);
+//                throw new RuntimeException(e);
             }
+
+
             System.out.println(output.toString());
             return out;
         }
 
+        // TODO: Further error checks from another method
         public static void writeCSV(String in, String out){
             String[] input = in.split(" ");
             try(
@@ -68,4 +77,12 @@ public class CSVFileHandler {
             }
         }
 
-        }
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+}
