@@ -1,8 +1,8 @@
-package serealising;
+package com.sparta.formatDrivers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.sparta.model.entities.Employee;
 
-import com.sparta.Employee;
 
 public class XMLDriver {
     public String ObjToXML(Employee employee) throws JsonProcessingException {
