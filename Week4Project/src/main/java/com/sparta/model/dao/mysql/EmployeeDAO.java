@@ -43,7 +43,15 @@ public class EmployeeDAO implements DAO<Employee> {
         }
         if(findByIdPS == null){
             try {
-                findByIdPS = connection.prepareStatement("SELECT * FROM employees WHERE emp_no = ?");
+                findByIdPS = connection.prepareStatement("SELECT * FROM ((\n" +
+                        "employees.employees \n" +
+                        "INNER JOIN \n" +
+                        " employees.dept_emp\n" +
+                        "ON dept_emp.emp_no = employees.emp_no)\n" +
+                        "INNER JOIN \n" +
+                        "employees.departments\n" +
+                        "ON dept_emp.dept_no = departments.dept_no)\n" +
+                        "WHERE employees.emp_no = ?");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
@@ -57,14 +65,14 @@ public class EmployeeDAO implements DAO<Employee> {
         }
         if(insertEmployeePS == null){
             try {
-                insertEmployeePS = connection.prepareStatement("INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date) VALUES (?,?,?,?,?,?)");
+                insertEmployeePS = connection.prepareStatement("INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hireDate) VALUES (?,?,?,?,?,?)");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
         }
         if(updateEmployeePS == null){
             try {
-                updateEmployeePS = connection.prepareStatement("UPDATE employees SET birth_date = ?, first_name = ?,last_name = ?, gender = ?, hire_date = ? WHERE emp_no = ?");
+                updateEmployeePS = connection.prepareStatement("UPDATE employees SET birth_date = ?, first_name = ?,last_name = ?, gender = ?, hireDate = ? WHERE emp_no = ?");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
@@ -98,7 +106,6 @@ public class EmployeeDAO implements DAO<Employee> {
         return result;
     }
 
-
     @Override
     public Employee findByID(int id) throws SQLException {
         Employee result = null;
@@ -112,7 +119,8 @@ public class EmployeeDAO implements DAO<Employee> {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6));
+                        rs.getString(6),
+                        rs.getString(12));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -129,7 +137,6 @@ public class EmployeeDAO implements DAO<Employee> {
         String lastName = updateEmployee.getLastName();
         String gender = updateEmployee.getGender();
         String hireDate = updateEmployee.getHireDate();
-        //UPDATE employees SET birth_date = ?, first_name = ?,last_name = ?, gender = ?, hire_date = ? WHERE emp_no = ?
         try {
 
             updateEmployeePS.setString(1,birthDate);
@@ -163,15 +170,17 @@ public class EmployeeDAO implements DAO<Employee> {
         ResultSet rs = (connection.createStatement()).executeQuery
                 ("SELECT * FROM employees");
         while(rs.next()){
-            list.add(new Employee(rs.getInt("emp_no"),
-                    rs.getString("birth_date"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name"),
+            list.add(new Employee(rs.getInt("empNo"),
+                    rs.getString("birthDate"),
+                    rs.getString("firstName"),
+                    rs.getString("lastName"),
                     rs.getString("gender"),
-                    rs.getString("hire_date")));
+                    rs.getString("hireDate"),
+                    rs.getString(12)));
         }
         return list;
     }
+
 
     public List<Employee> getEmployeeByStartAndEnd(String dept, String start, String end) throws SQLException{
         List<Employee> list = new ArrayList<>();
@@ -191,6 +200,7 @@ public class EmployeeDAO implements DAO<Employee> {
         }
         return list;
     }
+
     @Override
     public void close(){
         if (connection != null){

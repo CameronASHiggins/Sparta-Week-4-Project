@@ -13,10 +13,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         DAO<Employee> employeeDAO = EmployeeDAO.getInstance();
 
-
-//        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
-
-        findEmployeeById(employeeDAO, 0);
+        findEmployeeById(employeeDAO, 100001);
 
 //        displayAllEmployees();
 
@@ -25,7 +22,6 @@ public class Main {
 //        deleteEmployeeMain(employeeDAO,499999);
 
         employeeDAO.close();// In the final user interface we will have a while-loop that when the user is finished and the loop stops this is called and closes the connection
-
 
 
     }
@@ -66,4 +62,7 @@ public class Main {
             System.out.println(element);
         }
     }
+
+
+
 }
