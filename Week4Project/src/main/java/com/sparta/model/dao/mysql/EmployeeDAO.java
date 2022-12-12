@@ -65,14 +65,14 @@ public class EmployeeDAO implements DAO<Employee> {
         }
         if(insertEmployeePS == null){
             try {
-                insertEmployeePS = connection.prepareStatement("INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hireDate) VALUES (?,?,?,?,?,?)");
+                insertEmployeePS = connection.prepareStatement("INSERT INTO employees (emp_no, birth_date, first_name, last_name, gender, hire_date) VALUES (?,?,?,?,?,?)");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
         }
         if(updateEmployeePS == null){
             try {
-                updateEmployeePS = connection.prepareStatement("UPDATE employees SET birth_date = ?, first_name = ?,last_name = ?, gender = ?, hireDate = ? WHERE emp_no = ?");
+                updateEmployeePS = connection.prepareStatement("UPDATE employees SET birth_date = ?, first_name = ?,last_name = ?, gender = ?, hire_date = ? WHERE emp_no = ?");
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }

@@ -12,7 +12,7 @@ class CSVFileHandlerTest {
     void givenEmployeeCSV_return_FirstLine(){
         // set up
         String file = "src/main/java/com/sparta/employees01.csv";
-        String result = CSVFileHandler.readCSV(file);
+        String result = CSVFileHandler.readCSV(file).toString();
         String firstLine = result.split("\n")[0];
 
         // run function
@@ -30,7 +30,7 @@ class CSVFileHandlerTest {
     @Test
     void readCSV() {
         String file = "src/main/java/com/sparta/employees01.csv";
-        String result = CSVFileHandler.readCSV(file);
+        String result = CSVFileHandler.readCSV(file).toString();
 //        System.out.println(result);
 
     }
@@ -39,7 +39,7 @@ class CSVFileHandlerTest {
     void writeCSV(){
         String inFile = "src/main/java/com/sparta/employees01.csv";
         String outFile = "src/main/java/com/sparta/output-employees01.csv";
-        CSVFileHandler.writeCSV(CSVFileHandler.readCSV(inFile), outFile);
+        CSVFileHandler.writeCSV(CSVFileHandler.readCSV(inFile).toString(), outFile);
 
     }
 
