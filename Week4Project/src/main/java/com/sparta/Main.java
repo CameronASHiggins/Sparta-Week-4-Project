@@ -5,8 +5,11 @@ import com.sparta.model.dao.interfaces.DAO;
 
 import com.sparta.model.dao.mysql.EmployeeDAO;
 import com.sparta.model.entities.Employee;
+import com.sparta.utilities.EmployeeToJSONFile;
+import com.sparta.utilities.EmployeeToXMLFile;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -21,8 +24,17 @@ public class Main {
 
 //        deleteEmployeeMain(employeeDAO,499999);
 
-        employeeDAO.close();// In the final user interface we will have a while-loop that when the user is finished and the loop stops this is called and closes the connection
+        List<Employee> retrievedEmployeeslist = new ArrayList<>();
 
+        retrievedEmployeeslist = EmployeeDAO.getEmployeeByStartAndEnd("Development", "1985-01-01", "1990-12-10");
+
+        EmployeeToJSONFile employeeToJSONFile = new EmployeeToJSONFile();
+        EmployeeToXMLFile employeeToXMLFile = new EmployeeToXMLFile();
+
+        employeeToJSONFile.retrievedEmployeesToFile((ArrayList<Employee>) retrievedEmployeeslist);
+        employeeToXMLFile.retrievedEmployeesToFile((ArrayList<Employee>) retrievedEmployeeslist);
+
+        employeeDAO.close();// In the final user interface we will have a while-loop that when the user is finished and the loop stops this is called and closes the connection
 
     }
 
@@ -36,7 +48,7 @@ public class Main {
         EmployeeDAO.insert(insertEmployee);
     }
 
-    private static void updateEmployeeMain(DAO<Employee> EmployeeDAO,int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate) throws SQLException {
+    private static void updateEmployeeMain(DAO<Employee> EmployeeDAO, int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate) throws SQLException {
         Employee updateEmployee = new Employee();
         updateEmployee.setEmpNo(empNo);
         updateEmployee.setBirthDate(birthDate);
@@ -62,7 +74,6 @@ public class Main {
             System.out.println(element);
         }
     }
-
 
 
 }

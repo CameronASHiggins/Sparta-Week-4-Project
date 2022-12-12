@@ -182,7 +182,7 @@ public class EmployeeDAO implements DAO<Employee> {
     }
 
 
-    public List<Employee> getEmployeeByStartAndEnd(String dept, String start, String end) throws SQLException{
+    public static List<Employee> getEmployeeByStartAndEnd(String dept, String start, String end) throws SQLException{
         List<Employee> list = new ArrayList<>();
         ResultSet rs = (connection.createStatement()).executeQuery
                 (   "SELECT employees.emp_no, departments.dept_name, employees.birth_date, employees.first_name, employees.last_name, employees.gender, employees.hire_date, dept_emp.from_date, dept_emp.to_date " +
@@ -196,7 +196,8 @@ public class EmployeeDAO implements DAO<Employee> {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("gender"),
-                    rs.getString("hire_date")));
+                    rs.getString("hire_date"),
+                    rs.getString("dept_name")));
         }
         return list;
     }
