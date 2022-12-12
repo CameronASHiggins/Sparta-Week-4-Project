@@ -8,11 +8,12 @@ public class Employee {
     private String lastName;
     private String gender;
     private String hireDate;
+    private String department;
 
     public Employee() {
     }
 
-    public Employee(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate)
+    public Employee(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department)
     {
         this.empNo = empNo;
         this.birthDate = birthDate;
@@ -20,10 +21,11 @@ public class Employee {
         this.lastName = lastName;
         this.gender = gender;
         this.hireDate = hireDate;
+        this.department= department;
     }
 
-    //getters and setters to access the private employee fields
 
+    //getters and setters to access the private employee fields
 
     public int getEmpNo() {
         return empNo;
@@ -73,6 +75,14 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -80,8 +90,9 @@ public class Employee {
                 ", birthDate='" + birthDate + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
                 ", hireDate='" + hireDate + '\'' +
+                ", department='" + department +'\'' +
                 '}';
     }
 }

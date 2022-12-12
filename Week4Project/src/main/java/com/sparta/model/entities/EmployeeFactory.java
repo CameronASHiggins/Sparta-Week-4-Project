@@ -5,28 +5,28 @@ import com.sparta.*;
 
 
     public class EmployeeFactory {
-        public Employee createEmployee(String channel, int emp_no, String birth_date, String first_name, String last_name, String gender, String hire_date)
+        public Employee createEmployee(String channel, int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department)
         {
             switch(channel)
             {
                 case "Customer Service":
-                    return new CustomerService(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new CustomerService(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Human Resources":
-                    return new HumanResources(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new HumanResources(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Marketing":
-                    return new Marketing(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new Marketing(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Development":
-                    return new Development(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new Development(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Finance":
-                    return new Finance(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new Finance(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Quality Management":
-                    return new QualityManagement(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new QualityManagement(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Research":
-                    return new Research(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new Research(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Sales":
-                    return new Sales(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new Sales(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Production":
-                    return new Production(emp_no, birth_date, first_name, last_name, gender, hire_date);
+                    return new Production(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 default:
                     throw new IllegalArgumentException("Unknown channel "+channel);
             }

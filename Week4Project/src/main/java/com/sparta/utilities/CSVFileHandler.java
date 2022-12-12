@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class CSVFileHandler {
 
-        protected static String[] getFields(String line){
+        public static String[] getFields(String line){
             //                    split the csv line into fields
 
             String[] fields = line.split(",");
@@ -15,7 +15,7 @@ public class CSVFileHandler {
 //            String first_name = fields[2];
 //            String last_name = fields[3];
 //            String gender = fields[4];
-//            String hire_date = fields[5];
+//            String hireDate = fields[5];
 
             return fields;
         }

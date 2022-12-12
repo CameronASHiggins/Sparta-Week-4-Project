@@ -13,10 +13,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         DAO<Employee> employeeDAO = EmployeeDAO.getInstance();
 
-
 //        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
 
-        findEmployeeById(employeeDAO, 0);
+        findEmployeeById(employeeDAO, 100001);
 
 //        displayAllEmployees();
 
@@ -66,4 +65,7 @@ public class Main {
             System.out.println(element);
         }
     }
+
+
+
 }
