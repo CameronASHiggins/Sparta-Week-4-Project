@@ -32,7 +32,7 @@ public class EmployeeDAO implements DAO<Employee> {
         if (connection == null){
             Properties properties = new Properties();
             try {
-                properties.load(new FileReader("src/main/resources/dbconnect.properties"));
+                properties.load(new FileReader("Week4Project/src/main/resources/dbconnect.properties"));
                 connection = DriverManager.getConnection(
                         properties.getProperty("mysql.url"),
                         properties.getProperty("mysql.username"),
@@ -79,6 +79,7 @@ public class EmployeeDAO implements DAO<Employee> {
         }
         return instance;
     }
+
 
     @Override
     public int insert(Employee newEmployee) throws SQLException {
@@ -168,7 +169,11 @@ public class EmployeeDAO implements DAO<Employee> {
     public List<Employee> findAll() throws SQLException {
         List<Employee> list = new ArrayList<>();
         ResultSet rs = (connection.createStatement()).executeQuery
-                ("SELECT * FROM employees");
+                ("SELECT * FROM (\n" +
+                        "(employees.employees INNER JOIN employees.dept_emp ON dept_emp.emp_no = employees.emp_no)\n" +
+                        "INNER JOIN \n" +
+                        "employees.departments\n" +
+                        "ON dept_emp.dept_no = departments.dept_no)\n");
         while(rs.next()){
             list.add(new Employee(rs.getInt("empNo"),
                     rs.getString("birthDate"),
@@ -197,7 +202,7 @@ public class EmployeeDAO implements DAO<Employee> {
                     rs.getString("last_name"),
                     rs.getString("gender"),
                     rs.getString("hire_date"),
-                    "Sales"));
+                    dept));
         }
         return list;
     }

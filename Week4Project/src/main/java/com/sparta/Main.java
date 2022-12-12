@@ -6,6 +6,7 @@ import com.sparta.model.dao.interfaces.DAO;
 import com.sparta.model.dao.mysql.EmployeeDAO;
 import com.sparta.model.entities.Employee;
 import com.sparta.utilities.CSVFileHandler;
+import com.sparta.utilities.EmployeeToXml;
 import com.sparta.utilities.JSONFormat;
 
 import java.sql.SQLException;
@@ -15,13 +16,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         DAO<Employee> employeeDAO = EmployeeDAO.getInstance();
 
-<<<<<<< HEAD
+
 //        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
 
 //        findEmployeeById(employeeDAO, 100001);
-=======
+
         findEmployeeById(employeeDAO, 100001);
->>>>>>> 1f8a5349fa823d7f74bad7ba69da57c53f004554
+
 
 //        displayAllEmployees();
 
@@ -29,7 +30,7 @@ public class Main {
 
 //        deleteEmployeeMain(employeeDAO,499999);
 
-        Set<String> distinctEmployees = CSVFileHandler.getDistinct(CSVFileHandler.readCSV("src/main/resources/employees01.csv"));
+        Set<String> distinctEmployees = CSVFileHandler.getDistinct(CSVFileHandler.readCSV("Week4Project/src/main/resources/employees01.csv"));
                 for (String employee: distinctEmployees.stream().toList()) {
                     String[] employeeData = employee.split(",");
                     System.out.println(employeeData[4]);
@@ -39,12 +40,11 @@ public class Main {
 //        List<String> duplicates = CSVFileHandler.getDuplicates(CSVFileHandler.readCSV("src/main/resources/employees01.csv"));
 //        System.out.println(duplicates);
 
+//        Create XML file for the 1980s Sales department
+        EmployeeToXml.convertToXml("Sales", "1980-01-01", "1990-01-01");
+
         employeeDAO.close();// In the final user interface we will have a while-loop that when the user is finished and the loop stops this is called and closes the connection
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 1f8a5349fa823d7f74bad7ba69da57c53f004554
     }
 
     private static void createEmployeeMain(DAO<Employee> EmployeeDAO, String birthDate, String firstName, String lastName, String gender, String hireDate) throws SQLException {
