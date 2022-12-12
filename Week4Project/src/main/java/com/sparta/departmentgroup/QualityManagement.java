@@ -4,7 +4,6 @@ import com.sparta.model.entities.Employee;
 
 public class QualityManagement extends Employee implements DepartmentInterface {
 
-
     public QualityManagement(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department) {
         super(empNo, birthDate, firstName, lastName, gender, hireDate, department);
     }

@@ -90,9 +90,10 @@ public class Employee {
                 ", birthDate='" + birthDate + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", gender='" + gender + '\'' +
+                ", gender=" + gender +
                 ", hireDate='" + hireDate + '\'' +
                 ", department='" + department +'\'' +
+
                 '}';
     }
 }
