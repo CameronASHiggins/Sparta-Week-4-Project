@@ -5,10 +5,14 @@ import com.sparta.*;
 
 
     public class EmployeeFactory {
-        public Employee createEmployee(String channel, int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department)
+
+        public Employee createEmployee(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department)
+
+
         {
-            switch(channel)
+            switch(department)
             {
+
                 case "Customer Service":
                     return new CustomerService(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Human Resources":
@@ -27,8 +31,9 @@ import com.sparta.*;
                     return new Sales(empNo, birthDate, firstName, lastName, gender, hireDate, department);
                 case "Production":
                     return new Production(empNo, birthDate, firstName, lastName, gender, hireDate, department);
+
                 default:
-                    throw new IllegalArgumentException("Unknown channel "+channel);
+                    throw new IllegalArgumentException("Unknown channel "+ department);
             }
         }
     }
