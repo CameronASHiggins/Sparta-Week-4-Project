@@ -15,9 +15,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
         DAO<Employee> employeeDAO = EmployeeDAO.getInstance();
 
+<<<<<<< HEAD
 //        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
 
 //        findEmployeeById(employeeDAO, 100001);
+=======
+        findEmployeeById(employeeDAO, 100001);
+>>>>>>> 1f8a5349fa823d7f74bad7ba69da57c53f004554
 
 //        displayAllEmployees();
 
@@ -36,6 +40,11 @@ public class Main {
 //        System.out.println(duplicates);
 
         employeeDAO.close();// In the final user interface we will have a while-loop that when the user is finished and the loop stops this is called and closes the connection
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1f8a5349fa823d7f74bad7ba69da57c53f004554
     }
 
     private static void createEmployeeMain(DAO<Employee> EmployeeDAO, String birthDate, String firstName, String lastName, String gender, String hireDate) throws SQLException {

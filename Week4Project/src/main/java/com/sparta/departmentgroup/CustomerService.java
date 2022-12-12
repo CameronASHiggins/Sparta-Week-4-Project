@@ -5,8 +5,11 @@ import com.sparta.model.entities.Employee;
 public class CustomerService extends Employee implements DepartmentInterface {
 
 
+
+
     public CustomerService(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department) {
         super(empNo, birthDate, firstName, lastName, gender, hireDate, department);
+
     }
 
     @Override
