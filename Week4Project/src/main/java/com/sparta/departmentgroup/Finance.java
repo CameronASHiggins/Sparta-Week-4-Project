@@ -1,13 +1,12 @@
 package com.sparta.departmentgroup;
 
 
-import com.sparta.model.dao.interfaces.Department;
 import com.sparta.model.entities.Employee;
 
-public class Finance extends Employee implements Department {
+public class Finance extends Employee implements DepartmentInterface {
 
-    public Finance(int emp_no, String birth_date, String first_name, String last_name, String gender, String hire_date) {
-        super(emp_no, birth_date, first_name, last_name, gender, hire_date);
+    public Finance(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department) {
+        super(empNo, birthDate, firstName, lastName, gender, hireDate, department);
     }
 
     @Override

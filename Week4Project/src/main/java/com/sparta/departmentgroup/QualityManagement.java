@@ -1,15 +1,11 @@
 package com.sparta.departmentgroup;
 
-import com.sparta.model.dao.interfaces.Department;
 import com.sparta.model.entities.Employee;
 
-import java.time.LocalDate;
+public class QualityManagement extends Employee implements DepartmentInterface {
 
-public class QualityManagement extends Employee implements Department {
-
-
-    public QualityManagement(int emp_no, String birth_date, String first_name, String last_name, String gender, String hire_date) {
-        super(emp_no, birth_date, first_name, last_name, gender, hire_date);
+    public QualityManagement(int empNo, String birthDate, String firstName, String lastName, String gender, String hireDate, String department) {
+        super(empNo, birthDate, firstName, lastName, gender, hireDate, department);
     }
 
     @Override
