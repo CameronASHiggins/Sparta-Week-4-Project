@@ -196,7 +196,8 @@ public class EmployeeDAO implements DAO<Employee> {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("gender"),
-                    rs.getString("hire_date")));
+                    rs.getString("hire_date"),
+                    "Sales"));
         }
         return list;
     }
