@@ -1,36 +1,36 @@
 package com.sparta.model.entities;
 
-import com.sparta.utilities.WriteFile;
+import com.sparta.utilities.FileType;
 import com.sparta.utilities.XMLFormat;
 import com.sparta.utilities.*;
-import java.io.File;
 
 public class FileFactory {
 
-    public void storeObjToFile( String input, Employee[] employees  ) {
+    // return: corresponding file format, null if unsupported file type
+    public FileType storeToSpecifiedFile ( String outFileName ) {
 
         // part 1 = file name , part 2 = file extension
-        String[] parts = input.split(".");
+        String[] parts = outFileName.split("\\.");
 
         // check if the input is the file name and file extension separated by "."
         if (parts.length != 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("name can not consist of . and must include and extension");
         }
 
-        WriteFile wf;
-        switch (parts[1].toLowerCase()) {
+        switch ( parts[1].toLowerCase()  ) {
             case "xml":
-                wf = new XMLFormat();
+                System.out.println("Employees successfully added to the new " + outFileName + " file.");
+                return new XMLFormat();
                 //wf.writeToFile(Employee);
             case "json":
-                wf = new JSONFormat();
+                System.out.println("Employees successfully added to the new " + outFileName + " file.");
+                return new JSONFormat();
                 //wf.writeToFile();
             case "csv":
                 System.out.println("ADD LATER");
                 //wf.writeToFile();
         }
-
-        System.out.println("Employees successfully added to the new " + input + " file.");
-
+        return null;
     }
+
 }

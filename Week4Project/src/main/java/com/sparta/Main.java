@@ -5,7 +5,9 @@ import com.sparta.model.dao.interfaces.DAO;
 
 import com.sparta.model.dao.mysql.EmployeeDAO;
 import com.sparta.model.entities.Employee;
+import com.sparta.model.entities.FileFactory;
 import com.sparta.utilities.CSVFileHandler;
+import com.sparta.utilities.FileType;
 import com.sparta.utilities.JSONFormat;
 
 import java.sql.SQLException;
@@ -15,13 +17,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         DAO<Employee> employeeDAO = EmployeeDAO.getInstance();
 
-<<<<<<< HEAD
 //        createEmployeeMain(employeeDAO,"2000-02-26","Robert","Ciuches","M","2012-11-14");
 
 //        findEmployeeById(employeeDAO, 100001);
-=======
         findEmployeeById(employeeDAO, 100001);
->>>>>>> 1f8a5349fa823d7f74bad7ba69da57c53f004554
 
 //        displayAllEmployees();
 
@@ -40,11 +39,9 @@ public class Main {
 //        System.out.println(duplicates);
 
         employeeDAO.close();// In the final user interface we will have a while-loop that when the user is finished and the loop stops this is called and closes the connection
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 1f8a5349fa823d7f74bad7ba69da57c53f004554
+
     }
 
     private static void createEmployeeMain(DAO<Employee> EmployeeDAO, String birthDate, String firstName, String lastName, String gender, String hireDate) throws SQLException {
@@ -82,6 +79,49 @@ public class Main {
         for (Employee element : list) {
             System.out.println(element);
         }
+    }
+
+    // Phase 2 --------------------------------------------------
+    public static void selectAndStoreEmployeesToFile() throws SQLException {
+
+        // Step 1 = User enters Department, Start date, End date
+        // result = query the table and get a list or array of employee objects
+
+        // Step 2 = User enter file name and extension ex "devops2019-2022.json"
+        // result = appropriate file gets created with the info, using fileFactory
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        String Department = null;
+        String startDate = null;
+        String endDate = null;
+        String outFile = null;
+
+        //--------------------- Get User Input -----------------------------
+
+        System.out.println("Please Enter a Department:");
+        Department = myObj.nextLine();  // Read user input
+
+        System.out.println("Please Enter a Start Date:");
+        startDate = myObj.nextLine();  // Read user input
+
+        System.out.println("Please Enter a Department:");
+        endDate = myObj.nextLine();  // Read user input
+
+        System.out.println("Please Enter the filename you wish to save in:");
+        outFile = myObj.nextLine();  // Read user input
+
+        List<Employee> es = EmployeeDAO.getInstance().getEmployeeByStartAndEnd(Department, startDate, endDate);
+
+        FileFactory ff = new FileFactory();
+
+        FileType ft = ff.storeToSpecifiedFile( outFile );
+
+        //List<Employee> es = new ArrayList<>();
+        //es.add( new Employee(1,"2","3","4","5","6","7"));
+        //es.add( new Employee(10,"20","30","40","50","60","70") );
+
+        ft.writeToFile( es, outFile );
+
+
     }
 
 
