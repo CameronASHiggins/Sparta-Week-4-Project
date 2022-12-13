@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.model.entities.Employee;
 
 import java.io.*;
+import java.util.List;
 
-public class JSONFormat implements WriteFile{
+public class JSONFormat implements FileType {
 
     public String ObjToJson(Employee employee) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
@@ -18,7 +19,7 @@ public class JSONFormat implements WriteFile{
     }
 
     @Override
-    public void writeToFile( Employee[] employees , String outFile ){
+    public void writeToFile(List<Employee> employees , String outFile ){
         //JSONFormat format = new JSONFormat();
 
         try( BufferedWriter bw = new BufferedWriter(new FileWriter( outFile )) ){ // soz
